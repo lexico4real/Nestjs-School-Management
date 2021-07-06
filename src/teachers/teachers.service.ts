@@ -42,13 +42,15 @@ export class TeachersService {
     this.Teachers[index] = updatedTeacher;
   }
 
-  deleteTeacher(prodId: string) {
-    const index = this.findTeacher(prodId)[1];
+  deleteTeacher(teacherId: string) {
+    const index = this.findTeacher(teacherId)[1];
     this.Teachers.splice(index, 1);
   }
 
   private findTeacher(id: string): [Teacher, number] {
-    const TeacherIndex = this.Teachers.findIndex((prod) => prod.id === id);
+    const TeacherIndex = this.Teachers.findIndex(
+      (teacher) => teacher.id === id,
+    );
     const Teacher = this.Teachers[TeacherIndex];
     if (!Teacher) {
       throw new NotFoundException('Could not find Teacher.');
